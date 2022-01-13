@@ -19,7 +19,8 @@ class MonthlyUsage
           service_name = Service.find(service_id)
 
           result[service_name] ||= { bandwidth: 0, requests: 0, compute_requests: 0 }
-          result[service_name][:bandwidth] += stats['bandwidth']
+
+          result[service_name][:bandwidth] += (stats['bandwidth'] / 1.0.megabyte).round(2)
           result[service_name][:requests] += stats['requests']
           result[service_name][:compute_requests] += stats['compute_requests']
         end

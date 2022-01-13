@@ -26,7 +26,7 @@ class Report
 
       rows = services.map do |service|
         row = [service]
-        dates.each { |date| row << stats.dig(date, service, metric) || 0 }
+        dates.each { |date| row << stats.dig(date, service, metric).to_i }
         row
       end
 
